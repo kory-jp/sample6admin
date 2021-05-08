@@ -1,0 +1,10 @@
+<header>
+<span>SAMPLE6-app</span>
+<%=
+  if current_customer
+    link_to "ログアウト", :customer_session, method: delete
+  else
+    link_to "ログイン", :customer_login
+  end
+%>
+</header>
