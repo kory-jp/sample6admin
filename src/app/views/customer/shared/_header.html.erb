@@ -1,5 +1,7 @@
 <header>
 <span>SAMPLE6-app</span>
+<%= content_tag(:span, flash.notice) if flash.notice %>
+<%= content_tag(:span, flash.alert) if flash.alert %>
 <%=
   if current_customer
     link_to "ログアウト", :customer_session, method: :delete
