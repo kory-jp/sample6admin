@@ -14,16 +14,24 @@ class Customer::SessionsController < Customer::Base
       customer = Customer.find_by(email: @form.email)
     end
 
-    if customer
-      session[:customer_id] = customer.id
-      redirect_to :customer_root 
+    if Customer::Authenticator.new(customer).authenticate(@form.password)
+      if customer.suspended?
+        flash.now.alert = "アカウントが停止されています"
+        render action: "new"
+      else
+        session[:customer_id] = customer.id
+        flash.notice = "ログインしました"
+        redirect_to :customer_root 
+      end
     else
+      flash.now.alert = "メールアドレスまたはパスワードが正しくありません"
       render action: "new"
     end
   end
 
   def destory
     session.delete(:customer_id)
+    flash.notice = "ログアウトしました"
     redirect_to :customer_root
   end
 end
