@@ -29,7 +29,7 @@ class Customer::SessionsController < Customer::Base
     end
   end
 
-  def destory
+  def destroy
     session.delete(:customer_id)
     flash.notice = "ログアウトしました"
     redirect_to :customer_root
