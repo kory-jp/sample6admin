@@ -29,7 +29,7 @@ class Admin::SessionsController < Admin::Base
     end
   end
 
-  def destory
+  def destroy
     session.delete(:administrator_id)
     flash.notice = "ログアウトしました"
     redirect_to :admin_root
