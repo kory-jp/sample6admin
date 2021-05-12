@@ -1,0 +1,27 @@
+<div>
+  <%= f.label :email, "メールアドレス", class: "required" %>
+  <%= f.email_field :email, size: 32, required: true %>
+</div>
+<% if f.object.new_record? %>
+  <div>
+    <%= f.label :password, "パスワード", class: "required" %>
+    <%= f.password_field :password, size: 32, required: true %>
+  </div>
+<% end %>
+<div>
+  <%= f.label :name, "氏名", class: "required" %>
+  <%= f.text_field :name, required: true %>
+</div>
+<div>
+  <%= f.label :nickname, "ニックネーム", class: "required" %>
+  <%= f.text_field :nickname, required: true %>
+</div>
+<div>
+  <%= f.label :introduction, "紹介文", class: "required" %>
+  <%= f.text_field :introduction, required: true %>
+</div>
+</div>
+<div class="check-boxes">
+  <%= f.check_box :suspended %>
+  <%= f.label :suspended, "アカウント停止" %>
+</div>
