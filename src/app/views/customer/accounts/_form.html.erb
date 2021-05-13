@@ -1,0 +1,16 @@
+<div>
+  <%= f.label :email, "メールアドレス", class: "required" %>
+  <%= f.email_field :email, size: 32, required: true %>
+</div>
+<div>
+  <%= f.label :name, "氏名", class: "required" %>
+  <%= f.text_field :name, required: true %>
+</div>
+<div>
+  <%= f.label :nickname, "ニックネーム" %>
+  <%= f.text_field :nickname %>
+</div>
+<div>
+  <%= f.label :introduction, "紹介文" %>
+  <%= f.text_field :introduction %>
+</div>

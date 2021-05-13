@@ -2,7 +2,7 @@
 <h1><%= @title %></h1>
 
 <div>
-  <%= form_with model: @customer, url: [ :admin, @customer ] do |f| %>
+  <%= form_with model: @customer, url: [ :admin, @customer ], local: true do |f| %>
     <%= render "form", f: f %>
     <div>
       <%= f.submit "更新" %>

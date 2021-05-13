@@ -9,7 +9,7 @@ class Customer::SessionsController < Customer::Base
   end
 
   def create
-    @form = Customer::LoginForm.new(params[:customer_login_form])
+    @form = Customer::LoginForm.new(login_form_params)
     if @form.email.present?
       customer = Customer.find_by(email: @form.email)
     end
@@ -27,6 +27,10 @@ class Customer::SessionsController < Customer::Base
       flash.now.alert = "メールアドレスまたはパスワードが正しくありません"
       render action: "new"
     end
+  end
+  
+  private def login_form_params
+    params.require(:customer_login_form).permit(:email, :password)
   end
 
   def destroy
