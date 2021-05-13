@@ -14,12 +14,11 @@
 </div>
 <div>
   <%= f.label :nickname, "ニックネーム", class: "required" %>
-  <%= f.text_field :nickname, required: true %>
+  <%= f.text_field :nickname %>
 </div>
 <div>
   <%= f.label :introduction, "紹介文", class: "required" %>
-  <%= f.text_field :introduction, required: true %>
-</div>
+  <%= f.text_area :introduction%>
 </div>
 <div class="check-boxes">
   <%= f.check_box :suspended %>

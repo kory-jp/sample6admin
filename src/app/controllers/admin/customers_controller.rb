@@ -17,7 +17,7 @@ class Admin::CustomersController < Admin::Base
   end
 
   def create
-    @customer = Customer.new(params[:customer])
+    @customer = Customer.new(customer_params)
     if @customer.save
       flash.notice = "職員アカウントを新規登録しました。"
       redirect_to :admin_customers
@@ -28,13 +28,19 @@ class Admin::CustomersController < Admin::Base
 
   def update
     @customer = Customer.find(params[:id])
-    @customer.assign_attributes(params[:customer])
+    @customer.assign_attributes(customer_params)
     if @customer.save
       flash.notice = "職員アカウントを更新しました。"
       redirect_to :admin_customers
     else
       render action: "edit"
     end
+  end
+
+  private def customer_params
+    params.require(:customer).permit(
+      :email, :name, :password, :nickname, :suspended, :introduction, :image_data
+    )
   end
 
   def destroy
