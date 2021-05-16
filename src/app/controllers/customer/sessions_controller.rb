@@ -1,4 +1,8 @@
 class Customer::SessionsController < Customer::Base 
+  skip_before_action :authorize
+  skip_before_action :check_account
+  skip_before_action :check_timeout
+
   def new
     if current_customer
       redirect_to :customer_root
@@ -20,6 +24,7 @@ class Customer::SessionsController < Customer::Base
         render action: "new"
       else
         session[:customer_id] = customer.id
+        session[:last_access_time] = Time.current
         flash.notice = "ログインしました"
         redirect_to :customer_root 
       end
