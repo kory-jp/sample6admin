@@ -1,5 +1,9 @@
 require "rails_helper"
 
+describe "職員による自分のアカウントの管理", "ログイン前" do
+  include_examples "a protected singular customer controller", "customer/accounts"
+end
+
 describe "職員によるアカウントの管理" do
   before do
     post customer_session_url,
@@ -10,6 +14,28 @@ describe "職員によるアカウントの管理" do
         }
       }
   end
+
+  describe "情報表示" do
+    let(:customer){create(:customer)}
+
+    example "成功" do
+      get customer_account_url
+      expect(response.status).to eq(200)
+    end
+
+    example "停止フラグがセットされたら強制的にログアウト" do
+      customer.update_column(:suspended, true)
+      get customer_account_url
+      expect(response).to redirect_to(customer_root_url)
+    end
+
+    example "セッションタイムアウト" do
+      travel_to Customer::Base::TIMEOUT.from_now.advance(seconds: 1)
+      get customer_account_url
+      expect(response).to redirect_to(customer_login_url)
+    end
+  end
+
   describe "更新" do
     let(:customer) { create(:customer) }
     let(:params_hash) { attributes_for(:customer) }
