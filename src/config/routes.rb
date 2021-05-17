@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get "login" => "sessions#new", as: :login
       resource :session, only: [:create, :destroy]
       resource :account
+      resource :password, only: [:show, :edit, :update]
     end
   end
   
@@ -15,7 +16,10 @@ Rails.application.routes.draw do
       root "top#index"
       get "login" => "sessions#new", as: :login
       resource :session, only: [:create, :destroy]
-      resources :customers
+      resources :customers do
+        resources :customer_events, only: [:index]
+      end
+      resources :customer_events, only: [:index]
     end
   end
 end

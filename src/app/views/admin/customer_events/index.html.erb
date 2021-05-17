@@ -1,0 +1,40 @@
+<%
+  if @customer
+    @title = "#{@customer.name}さんのログイン・ログアウト記録"
+  else
+    @title = "職員のログイン・ログアウト記録"
+  end
+%>
+<h1><%= @title %></h1>
+
+<div>
+  <div>
+    <%= link_to "職員一覧", :admin_customers %>
+  </div>
+
+  <%= paginate @events %>
+
+  <table>
+    <tr>
+      <% unless @customer %><th>氏名</th><% end %>
+      <th>種別</th>
+      <th>日時</th>
+    </tr>
+    <%# <% @events.each do |event| %> %>
+      <%# <%= CustomerEventPresenter.new(event, self).table_row %> %>
+    <%# <% end %> %>
+    <%= render partial: "event", collection: @events %>
+    <% if @events.empty? %>
+      <tr>
+        <%= content_tag(:td, "記録がありません",
+          colspan: @customer ? 2 : 3, style: "text-align: center") %>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= paginate @events %>
+
+  <div >
+    <%= link_to "職員一覧", :admin_customers %>
+  </div>
+</div>

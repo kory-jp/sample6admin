@@ -20,11 +20,13 @@ class Customer::SessionsController < Customer::Base
 
     if Customer::Authenticator.new(customer).authenticate(@form.password)
       if customer.suspended?
+        customer.events.create!(type: "rejected")
         flash.now.alert = "アカウントが停止されています"
         render action: "new"
       else
         session[:customer_id] = customer.id
         session[:last_access_time] = Time.current
+        customer.events.create!(type: "logged_in")
         flash.notice = "ログインしました"
         redirect_to :customer_root 
       end
@@ -39,6 +41,9 @@ class Customer::SessionsController < Customer::Base
   end
 
   def destroy
+    if current_customer
+      current_customer.events.create!(type: "logged_out")
+    end
     session.delete(:customer_id)
     flash.notice = "ログアウトしました"
     redirect_to :customer_root
