@@ -4,7 +4,7 @@
 <div>
   <div>
     <%= link_to "アカウント情報編集", :edit_customer_account %> |
-    <%# <%= link_to "パスワード編集", :edit_staff_password %> %>
+    <%= link_to "パスワード編集", :customer_password %>
   </div>
 
   <table>
@@ -26,7 +26,7 @@
         <%= @customer.email %>
       </td>
     </tr>
-        <tr>
+    <tr>
       <th>紹介文</th>
       <td>
         <%= @customer.introduction %>

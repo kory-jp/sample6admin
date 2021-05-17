@@ -47,8 +47,9 @@ describe "管理者による職員管理" do
     example "メールアドレスが空白の場合は登録失敗" do
       params_hash.merge!(email: "" )
       post admin_customers_url, params: {customer: params_hash}
-      expect(response).not_to have_http_status "200"
-    end
+      # admin/customer_contollerのnewアクションの失敗のケースの処理を記載
+      expect(response).not_to redirect_to(new_admin_customer_url)
+    end 
 
     example "例外ActionController::ParameterMissingが発生" do
       expect {post admin_customers_url}.to raise_error(ActionController::ParameterMissing)
