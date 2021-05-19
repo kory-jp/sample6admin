@@ -25,4 +25,6 @@ src/.byebug_history
 
 # Ignore master key for decrypting credentials and more.
 src/config/master.key
-src/db/mysql-data/
+
+# git rm -r --cached src/db/mysql-data/ 後から対象から外す場合に実行するコマンド
+src/db/mysql-data
