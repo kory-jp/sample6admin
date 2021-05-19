@@ -27,7 +27,7 @@ given_names = %w{
 
   Customer.create!(
     email: "#{fn[1]}.#{gn[1]}@example.com",
-    name: "#{fn[0]} #{gn[0]}",
+    name: "#{fn[0]}#{gn[0]}",
     password: "password",
     suspended: n == 1,
     introduction: "はじめまして！#{fn[0]} #{gn[0]}です!"
