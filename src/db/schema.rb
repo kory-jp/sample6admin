@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_022538) do
+ActiveRecord::Schema.define(version: 2021_05_19_025447) do
 
   create_table "administrators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
@@ -43,5 +43,15 @@ ActiveRecord::Schema.define(version: 2021_05_16_022538) do
     t.index ["nickname"], name: "index_customers_on_nickname", unique: true
   end
 
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.bigint "customer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_posts_on_customer_id"
+  end
+
   add_foreign_key "customer_events", "customers"
+  add_foreign_key "posts", "customers"
 end

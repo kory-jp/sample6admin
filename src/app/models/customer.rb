@@ -4,6 +4,7 @@ class Customer < ApplicationRecord
   include PasswordHolder
 
   has_many :events, class_name: "CustomerEvent", dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   before_validation do
     self.name = normalize_as_name(name)

@@ -1,2 +1,8 @@
 <% @title = "ユーザートップページ" %>
 <h1><%=@title %></h1>
+
+<%= 
+  if current_customer
+   link_to "投稿記事一覧", :customer_posts
+  end
+%>

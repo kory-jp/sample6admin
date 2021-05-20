@@ -8,7 +8,7 @@ class Customer::PasswordsController < Customer::Base
   end
 
   def update
-    @change_password_form = Customer::ChangePasswordForm.new(:customer_params)
+    @change_password_form = Customer::ChangePasswordForm.new(customer_params)
     @change_password_form.object = current_customer
     if @change_password_form.save
       flash.notice = "パスワードを変更しました"

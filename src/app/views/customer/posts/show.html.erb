@@ -1,0 +1,19 @@
+<% @title = "投稿記事詳細" %>
+<h1><%=@title %></h1>
+
+<div style="background-color: #dcdcdc"> 
+  <div style="margin-bottom: 10px" >
+    <div>タイトル</div>
+    <%= @post.title%>
+  </div>
+  <hr>
+  <div>
+    <div>本文</div>
+    <%= @post.body %>
+  </div>
+  <hr>
+  <div>
+    <div>名前</div>
+    <%= @post.customer.name%>
+  </div>
+</div>
