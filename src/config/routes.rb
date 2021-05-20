@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   constraints host: config[:customer][:host] do
     namespace :customer, path: config[:customer][:path] do
       root "top#index"
+      resources :posts
       get "login" => "sessions#new", as: :login
       resource :session, only: [:create, :destroy]
       resource :account

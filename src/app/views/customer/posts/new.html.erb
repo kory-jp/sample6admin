@@ -1,0 +1,18 @@
+<% @title = "新規投稿画面" %>
+<h1><%=@title %></h1>
+<div style="margin: 20px"> 
+  <%= form_with model: @post, url: [:customer, @post] do |f| %>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <div>
+      <%= f.label :title, 'タイトル'%>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :body, '本文' %>
+      <%= f.text_area :body %>
+    </div>
+    <div>
+      <%= f.submit '保存'%>
+    </div>
+  <%end%>
+</div>
