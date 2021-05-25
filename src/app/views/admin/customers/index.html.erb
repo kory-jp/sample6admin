@@ -24,6 +24,13 @@
         <td>
           <%= link_to "編集", [ :edit, :admin, m ] %> |
           <%= link_to "Events", [:admin, m, :customer_events] %> |
+          <%# ----- %>
+          <%# rails/info/routesで確認
+          admin/customers/:customer_id/posts(.:format)
+          :admin, :18行目m, :post %>
+          <%# ------ %>
+          <%# <%= link_to "投稿記事一覧", [:admin, m, :posts] %> 
+          <%= link_to "投稿記事一覧", admin_customer_posts_path(m.id) %>
           <%= link_to "削除", [ :admin, m ], method: :delete,
             data: { confirm: "本当に削除しますか？" } %>
         </td>
