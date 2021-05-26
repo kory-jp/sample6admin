@@ -22,7 +22,7 @@
       <%# -------- %>
       <td><%= post.created_at.to_s(:datetime_jp) %></td>
       <td><%= post.updated_at.to_s(:datetime_jp) %></td>
-      <%# <td><%= link_to '詳細', customer_post_path(post) %></td>  %>
+      <td><%= link_to '詳細', admin_customer_post_path(id: post.id) %></td>
     </tr>
     <% end %>
   </tbody>

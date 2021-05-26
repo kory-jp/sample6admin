@@ -1,0 +1,24 @@
+<% @title = "記事詳細" %>
+<h1><%= @title %></h1>
+
+<h2><%= @customer.name %>の投稿</h2>
+
+<div>
+  <div>
+    <span>タイトル:</span>
+    <span><%= @post.title %></span>
+  </div>
+  <div>
+    <span>本文:</span>
+    <span><%= @post.body %></span>
+  </div>
+</div>
+
+<div>
+  <%= link_to "顧客一覧へ戻る", admin_customers_path %>
+  <br>
+  <%= link_to "投稿記事一覧", admin_customer_posts_path(@customer.id) %>
+  <br>
+  <%= link_to "削除", [:admin, @customer, @post], method: :delete,
+    data: { confirm: "本当に削除しますか？"} %>
+</div>

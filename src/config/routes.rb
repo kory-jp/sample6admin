@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resource :session, only: [:create, :destroy]
       resources :customers do
         resources :customer_events, only: [:index]
-        resources :posts
+        resources :posts, only: [:index, :show, :destroy]
       end
       resources :customer_events, only: [:index]
     end
